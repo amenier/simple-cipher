@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>
+Simple Cipher - Enter Text to Encode
+</title>
+</head>
+
+<header>
+    <h1>Simple Cipher</h1>
+</header>
+
+<body>
+<p>Enter your text below and plus a number to shift your message.</p>
+<br>
+<form>
+Number: <input type="number" id="inputShift" value="0">
+<br>
+Message: <input type="text" id="inputMessage" value="Lorem ipsum">
+</form>
+<br>
+<button id="submit" onclick="encode()">Encode Now!</button>
+<br>
+<p id="displayArea"></p>
+
+<script>
+
+let alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
+function encode() {
+
+    let message = document.getElementById("inputMessage").value;
+    let shift = document.getElementById("inputShift").value;
+
+    if ((typeof message) !== 'string') {
+        return document.getElementById("displayArea").innerHTML = "Must include a valid message in first argument";
+    }
+
+    if (typeof shift !== 'number') {
+        return document.getElementById("displayArea").innerHTML = "Must include a valid number in second argument";
+    }
+
+    if (shift === 0 || (shift%26 === 0)) {
+         return document.getElementById("displayArea").innerHTML = "That isn't a very good cipher, try again";
+    }
+
+    message = message.toLowerCase();
+
+    shift = Math.floor(shift % 26);
+    if (shift < 0) shift = 26 + shift;
+
+    let encodedMessage = '';
+
+    for (letter of message) {
+        originalIndex = alphabet.indexOf(letter);
+        if (originalIndex === -1) {
+            encodedMessage += letter;
+        } else if (originalIndex + shift < 26) {
+            encodedMessage += alphabet[originalIndex +shift];
+        } else encodedMessage += alphabet[originalIndex-(26-shift)];
+    }
+    
+    return document.getElementById("displayArea").innerHTML = encodedMessage;
+}
+
+
+</script>
+
+</body>
+
+
+
+<footer>
+    Created by AMCodes
+</footer>
+
+
+</html>
