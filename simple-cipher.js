@@ -4,7 +4,20 @@
 let alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
 function encode(message, shift) {
-    
+
+    console.log(typeof message);
+
+    if ((typeof message) !== 'string') {
+        return console.log("Must include a valid message in first argument");
+    }
+
+    if (typeof shift !== 'number') {
+        return console.log("Must include a valid number in second argument");
+    }
+    if (shift === 0 || (shift%26 === 0)) {
+        return console.log("That isn't a very good cipher, try again");
+    }
+
     message = message.toLowerCase();
     console.log(message);
     
@@ -13,15 +26,7 @@ function encode(message, shift) {
     shift = Math.floor(shift);
     console.log(shift);
     if (shift < 0) shift = 26 + shift;
-    console.log(typeof message);
-    // if ((typeof message) !== string) {
-    //     return console.log("Must include a valid message in first argument");
-    // }
 
-    // if (typeof shift !== 'number') {
-    //     return console.log("Must include a valid number in second argument");
-    // }
-    // if (shift === 0 || (shift%26 === 0)) throw "That isn't a very good cipher, try again";
     
     let encodedMessage = '';
     
@@ -38,8 +43,8 @@ function encode(message, shift) {
 }
 
 
-// encode(NaN, 7);
-// encode("hello", true);
-//encode('salads', 0);
+encode(NaN, 7);
+encode("hello", true);
+encode('salads', 0);
 encode("message",-5);
 encode("I love you", 1000);
