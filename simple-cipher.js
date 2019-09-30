@@ -28,11 +28,12 @@ function encode(message, shift) {
     if the number is greater than 26, the modulo remainder will be used to determine the shift
     then the number is rounded down in case it is a float
     finally, if the last number is negative, then a postive shift is calculatd*/
-    if (shift > 26) shift = shift%26;
+    /*if (shift > 26)*/ shift = Math.floor(shift % 26);
     console.log(shift);
-    shift = Math.floor(shift);
-    console.log(shift);
+    //shift = Math.floor(shift);
+    //console.log(shift);
     if (shift < 0) shift = 26 + shift;
+    console.log(shift);
     //I need to do the math to make sure this still works if a large neagtive number is added
     // maybe divide everything by 26, then if its negative subtract the remained from 26 to get the shift?
 
@@ -59,5 +60,6 @@ encode(NaN, 7);
 encode("hello", true);
 encode('salads', 0);
 encode("message",-5);
+encode("message",-27);
 encode("negative", -500.42);
 encode("I love you", 1000);
