@@ -30,8 +30,10 @@ let alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p',
 
 function encode() {
 
+    //Currently need to force the shift value to be a number. This was working fine before but now is always read as a string
     let message = document.getElementById("inputMessage").value;
-    let shift = document.getElementById("inputShift").value;
+    let shift = Number(document.getElementById("inputShift").value);
+    console.log(typeof shift);
 
     if ((typeof message) !== 'string') {
         return document.getElementById("displayArea").innerHTML = "Must include a valid message in first argument";
